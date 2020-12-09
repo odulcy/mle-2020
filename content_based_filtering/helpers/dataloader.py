@@ -12,6 +12,7 @@ def load_users(path):
     """
     users = pd.read_csv(path)
     users.set_index("user_id", inplace=True)
+    users.sort_index(inplace=True)
     return users
 
 def load_movies(path):
@@ -27,6 +28,7 @@ def load_movies(path):
     movies = pd.read_csv(path)
     movies.loc[:, movies.dtypes == 'float64'] = movies.loc[:, movies.dtypes == 'float64'].astype('int8')
     movies.set_index("movie_id", inplace=True)
+    movies.sort_index(inplace=True)
     return movies
 
 def load_ratings(path):
