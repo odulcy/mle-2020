@@ -21,7 +21,7 @@ def get_movie_name(movies, index):
     Returns:
         String : title
     """
-    return movies.iloc[index].title
+    return movies.iloc[index]["title"]
 
 def get_movie_year(movies, index):
     """Get a movie by index and return its year
@@ -31,4 +31,21 @@ def get_movie_year(movies, index):
     Returns:
         Int : year
     """
-    return movies.iloc[index].year
+    return movies.iloc[index]["year"]
+
+def get_user_best_ratings(ratings, user_id, top=10):
+    """Get the best ratings given by user_id on
+    the film he has seen.
+    Args:
+        ratings (Pandas DataFrame)
+        user_id (int or list of int)
+        top (int, optional). Default to 10
+    Returns:
+        List of int : movie ids
+    """
+    rates_from_user = ratings[ratings["user_id"].isin(user_id)]
+    rates_from_user = rates_from_user.groupby("user_id").apply(
+        lambda x : x.sort_values(by="rating", ascending=False).head(top).reset_index(drop=True)
+    )
+    rates_from_user = rates_from_user.drop("user_id", axis=1)
+    return rates_from_user
