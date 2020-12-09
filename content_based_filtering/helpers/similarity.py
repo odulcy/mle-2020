@@ -20,27 +20,27 @@ def pairsimilarity(feature_matrix):
     return feature_matrix.dot(feature_matrix.T)
 
 
-def get_most_similar_by_id(similarity, movie_id, top=10):
-    """Get most similar movies to a given movie by id.
+def get_most_similar_by_id(similarity, index, top=10):
+    """Get most similar items to a given item.
     Args:
         similarity (NumPy array)
-        movie_id (array like)
+        index (array like)
         top (int, optional). Default to 10
     Returns:
         Movie id
     """
     assert top >= 0, "top needs to be a non-negative value"
-    top = min(top,similarity.shape[0])
+    top = min(top,len(similarity))
 
     # Sort by best similarity
-    best = similarity[movie_id].argsort()[::-1]
+    best = similarity[index].argsort()[:,::-1]
     best_without_duplicate = []
 
     # A movie is obviously similar to itself
     # Delete its id, if present
     # To keep a top 10 for instance
     for i in range(best.shape[0]):
-        mask = (best[i] != movie_id[i])
+        mask = (best[i] != index[i])
         best_without_duplicate.append(best[i,mask])
 
     return np.array(best_without_duplicate)[:,:top]
