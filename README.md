@@ -13,7 +13,31 @@ python3 -m test tests/*
 This is the interview project that any applicant to our MLE internship position receives.
 
 The current structure is the following:
-![](imgs/project_structure.png)
+```bash
+├── config.py
+├── content_based_filtering
+│   ├── helpers
+│   │   ├── dataloader.py
+│   │   ├── __init__.py
+│   │   ├── movies.py
+│   │   ├── recommendations.py
+│   │   └── similarity.py
+│   └── __init__.py
+├── data
+│   ├── movies.csv
+│   ├── ratings.csv
+│   └── users.csv
+├── Exploration.ipynb
+├── imgs
+│   ├── dot_product_matrices.png
+│   └── project_structure.png
+├── Pipfile
+├── Pipfile.lock
+├── project_internship_mle.ipynb
+├── README.md
+└── tests
+    └── test_get_most_similar_by_id.py
+```
 
 The [notebook](project_internship_mle.ipynb) holds the necessary information to complete this exercise.
 In order to run it, we provide you with a jupyter-lab that you shall install following the [Setup environment section](#setup-the-environment)
