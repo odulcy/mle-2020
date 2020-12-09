@@ -6,12 +6,12 @@ def get_movie_id(movies, title, year=None):
         title (string)
         year (int, optional). Default to None
     Returns:
-        Pandas Index
+       NumPy array : list of int
     """
     res = movies[movies['title'] == title]
     if year:
         res = res[res['year'] == year]
-    return res.index
+    return res.index.values
 
 def get_movie_name(movies, index):
     """Get a movie by index and return its title
