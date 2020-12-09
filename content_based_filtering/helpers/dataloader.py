@@ -1,5 +1,16 @@
 import pandas as pd
 
+def generalize_zip_code(users):
+    """Perform a generalization of zip_code
+    to compute similarity between users
+    Args:
+        users (Pandas DataFrame)
+    Returns:
+        DataFrame with generalized zip_code
+    """
+    users["generalized_zip_code"] = users["zip_code"].apply(lambda x : x[:3])
+    return users
+
 def load_users(path):
     """Load users database from a csv file.
     
@@ -13,6 +24,7 @@ def load_users(path):
     users = pd.read_csv(path)
     users.set_index("user_id", inplace=True)
     users.sort_index(inplace=True)
+    users = generalize_zip_code(users)
     return users
 
 def load_movies(path):
