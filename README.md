@@ -1,5 +1,13 @@
 # Interview project for TinyClues MLE Internship
 
+## How to launch tests
+
+If you want to run every test, please use the command below :
+
+```bash
+python3 -m test tests/*
+```
+
 ## Introduction
 
 This is the interview project that any applicant to our MLE internship position receives.
